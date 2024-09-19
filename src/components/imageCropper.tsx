@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createRef } from "react";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import Image from "next/image";
 
 type Props = {
   editingImage: string;
@@ -58,7 +59,7 @@ function ImageCropper(props: Props) {
    
           <div className="w-72 h-72">
             {cropData && (
-              <img className="w-full" src={cropData} alt="cropped" />
+              <Image className="w-full" src={cropData} alt="cropped" />
             )}
           </div>
         </div>

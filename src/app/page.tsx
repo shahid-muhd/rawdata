@@ -1,5 +1,6 @@
 "use client";
 import ImageCropper from "@/components/imageCropper";
+import Image from "next/image";
 import React, { useState } from "react";
 
 const App: React.FC = () => {
@@ -54,7 +55,8 @@ const App: React.FC = () => {
           <div className="w-full  grid grid-cols-2 gap-5">
             {images.map((image, index) => (
               <div key={index}>
-                <img
+                
+                <Image
                   onClick={() => setEditingImage(image)}
                   src={image}
                   alt={`img-${index}`}

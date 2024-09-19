@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const ImageDisplay: React.FC = () => {
@@ -21,12 +22,13 @@ const ImageDisplay: React.FC = () => {
   }, []);
 
   return (
-    <div className="container  0 w-full min-h-screen flex items-center justify-center p-36 ">
+
+<div className="container  0 w-full min-h-screen flex items-center justify-center p-36 ">
       {images.length > 0 ? (
         <div className="w-full grid grid-cols-2 gap-5 ">
           {images.length > 0 &&
             images.map((image, index) => (
-              <img
+              <Image
                 key={index}
                 src={image}
                 alt={`img-${index}`}
