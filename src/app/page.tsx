@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const [editingImage, setEditingImage] = useState("");
 
   const saveCropedChanges = (cropData: string) => {
-    let index = images.indexOf(editingImage);
+    const index = images.indexOf(editingImage);
     images[index] = cropData;
 
     setImages((prevImages) => {
