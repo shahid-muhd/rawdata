@@ -1,6 +1,6 @@
 "use client";
 import ImageCropper from "@/components/imageCropper";
-import React, { useState, useEffect, useRef, createRef } from "react";
+import React, { useState } from "react";
 
 const App: React.FC = () => {
   const [images, setImages] = useState([
