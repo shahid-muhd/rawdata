@@ -22,11 +22,11 @@ const App: React.FC = () => {
       const newImages = [...prevImages];
       newImages[index] = cropData;
       console.log(newImages);
-      
+
       return newImages;
     });
 
-    // setEditingImage(cropData);
+    setEditingImage(cropData);
   };
 
   const broadcastChannel = new BroadcastChannel("image_channel");
@@ -47,26 +47,63 @@ const App: React.FC = () => {
     }
   };
 
+  const openSecondaryWindow = () => {
+    const url = "/display";
+    const newWindow = window.open(url, "_blank", "width=800,height=600");
+
+    if (newWindow) {
+      newWindow.focus();
+    } else {
+      alert("Please allow popups for this website.");
+    }
+  };
+
   return (
     <div className="container w-full  ">
       <div className=" flex justify-center  ">
         <div className="space-y-10">
-          <h1 className="text-2xl font-medium">First Window - Select Images</h1>
+          <div className="flex items-center justify-between py-3">
+            <div className="w-fit   ">
+              <h1 className="text-2xl font-medium">
+                First Window - Select Images
+              </h1>
+
+              <div>
+                <p>Click on the images for resizing.</p>
+                <p>
+                  Click on the checkboxes below each images to display it on the
+                  second screen.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <button
+                onClick={() => openSecondaryWindow()}
+                className="rounded-md w-fit bg-slate-400 p-3 text-white"
+              >
+                Open Second Window
+              </button>
+            </div>
+          </div>
           <div className="w-full  grid grid-cols-2 gap-5">
             {images.map((image, index) => (
               <div key={index}>
-                
                 <Image
                   onClick={() => setEditingImage(image)}
                   src={image}
                   alt={`img-${index}`}
+                  width={90}
+                  height={90}
                   className="w-96 h-96"
                 />
-                <input
-                  className=" w-5 h-8"
-                  type="checkbox"
-                  onChange={(e) => handleSelect(image, e.target.checked)}
-                />
+                <div>
+                  <input
+                    className="image-selector w-5 h-8"
+                    type="checkbox"
+                    onChange={(e) => handleSelect(image, e.target.checked)}
+                  />
+                </div>
               </div>
             ))}
           </div>

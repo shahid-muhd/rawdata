@@ -8,7 +8,7 @@ type Props = {
   saveCropedChanges: (cropData: string) => void;
 };
 function ImageCropper(props: Props) {
-  const [cropData, setCropData] = useState("#");
+  const [cropData, setCropData] = useState("");
   const cropperRef = createRef<ReactCropperElement>();
   const image = props.editingImage;
   const saveChanges = props.saveCropedChanges;
@@ -20,7 +20,7 @@ function ImageCropper(props: Props) {
   };
 
   useEffect(() => {
-    setCropData('#')
+    setCropData("");
   }, [image]);
 
   return (
@@ -56,10 +56,15 @@ function ImageCropper(props: Props) {
           Save Changes
         </button>
         <div className="w-full flex justify-center space-y-10 ">
-   
           <div className="w-72 h-72">
             {cropData && (
-              <Image className="w-full" src={cropData} alt="cropped" />
+              <Image
+                width={90}
+                height={90}
+                className="w-full"
+                src={cropData}
+                alt="cropped"
+              />
             )}
           </div>
         </div>

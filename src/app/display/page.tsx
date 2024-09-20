@@ -6,8 +6,8 @@ const ImageDisplay: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
       const broadcastChannel = new BroadcastChannel("image_channel");
+    if (typeof window !== "undefined") {
 
       // Listen for messages from the broadcast channel
       broadcastChannel.onmessage = (event) => {
@@ -21,6 +21,15 @@ const ImageDisplay: React.FC = () => {
     }
   }, []);
 
+
+//   const removeItem = (itemToRemove:string) => {
+//     const updatedItems = images.filter(item => item !== itemToRemove);
+//     setImages(updatedItems);
+
+//     // Broadcast the updated items to other listeners
+//     broadcastChannel.postMessage(updatedItems);
+//   };
+
   return (
 
 <div className="container  0 w-full min-h-screen flex items-center justify-center p-36 ">
@@ -32,6 +41,8 @@ const ImageDisplay: React.FC = () => {
                 key={index}
                 src={image}
                 alt={`img-${index}`}
+                width={90}
+                height={90}
                 className="w-96 h-96"
               />
             ))}
